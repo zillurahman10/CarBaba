@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="w-50 mx-auto">
+    <h3>Profile</h3>
+    <a href="{% url 'update' %}"><button class="btn btn-warning">Update your profile</button></a>
+    <h3>Order history: </h3>
+    {% for dt in data %}
+    <div class="card mb-3 col-lg-4 col-sm-1" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <img src="{{dt.car.image.url}}" alt="..." class="w-100" style="border-radius: 10px">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{dt.car.car_name}}</h5>
+              <p class="card-text">Price: {{dt.car.price}}</p>
+              <p class="card-text">Brand: <small class="text-muted">{{dt.car.brand.name}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+</div>
+
+{% endblock %}

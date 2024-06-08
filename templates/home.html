@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center mb-4">
+  {% for bd in brand %}
+  <button class="btn btn-secondary mx-1"><a class="text-decoration-none text-light" href="{% url 'brand_wise_car' bd.slug %}">{{bd.name}}</a></button>
+  {% endfor %}
+</div>
+<div class="row mx-2">
+    {% for dt in data %}
+    <div class="card mb-3 col-lg-4 col-sm-1" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <img src="{{dt.image.url}}" alt="..." class="w-100" style="border-radius: 10px">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{dt.car_name}}</h5>
+              <p class="card-text">Price: {{dt.price}}</p>
+              <p class="card-text">Brand: <small class="text-muted">{{dt.brand.name}}</small></p>
+              <a href="{% url 'details' dt.id %}" class="btn btn-primary">Views details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+{% endblock %}
